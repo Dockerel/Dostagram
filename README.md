@@ -10,13 +10,13 @@
 
 ---
 
-/users/:id -> See user
+/user/:id -> See user
 
-/users/logout -> Log Out ✅
+/user/logout -> Log Out ✅
 
-/users/edit -> Edit MY Profile
+/user/edit -> Edit MY Profile
 
-/users/delete -> Delete MY Profile
+/user/delete -> Delete MY Profile
 
 ---
 
