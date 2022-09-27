@@ -1,0 +1,15 @@
+extends base
+
+block content
+    if errorMessage 
+        span #{errorMessage}
+    form.join(method="POST")
+        input(name="name" placeholder="Name" type="text" required)
+        input(name="username" placeholder="Username" type="text" required)
+        input(name="password" placeholder="Password" type="password" required)
+        input(name="password2" placeholder="Password Confirmation" type="password" required)
+        input(name="email" placeholder="Email" type="email" required)
+        input(type="submit" value="Submit")
+    div
+        span Already have an account? 
+        a(href="/login") Log in now &rarr;
