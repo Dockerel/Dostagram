@@ -1,3 +1,4 @@
+import { token } from "morgan";
 import fetch from "node-fetch";
 import User from "../models/User.js";
 
@@ -177,4 +178,65 @@ export const inputKakaoData = async (req, res) => {
   req.session.loggedIn = true;
   req.session.loggedInUser = user;
   return res.redirect("/");
+};
+
+export const startNaverLogin = (req, res) => {
+  const baseUrl = "https://nid.naver.com/oauth2.0/authorize";
+  const redirectUrl = "http://localhost:4000/user/naver/finish";
+  const config = {
+    response_type: "code",
+    client_id: process.env.NAVER_CLIENT_ID,
+    redirect_uri: redirectUrl,
+    state: process.env.NAVER_STATE_STRING,
+  };
+  const params = new URLSearchParams(config);
+  const finalUrl = `${baseUrl}?${params}`;
+  return res.redirect(finalUrl);
+};
+export const finishNaverLogin = async (req, res) => {
+  const { code } = req.query;
+  const baseUrl = "https://nid.naver.com/oauth2.0/token";
+  const config = {
+    grant_type: "authorization_code",
+    client_id: process.env.NAVER_CLIENT_ID,
+    client_secret: process.env.NAVER_CLIENT_SECRET,
+    code,
+    state: process.env.NAVER_STATE_STRING,
+  };
+  const params = new URLSearchParams(config);
+  const finalUrl = `${baseUrl}?${params}`;
+  const tokenRequest = await (
+    await fetch(finalUrl, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+  ).json();
+  if ("access_token" in tokenRequest) {
+    const { access_token, token_type } = tokenRequest;
+    const baseUrl = "https://openapi.naver.com/v1/nid/me";
+    const responseData = await (
+      await fetch(baseUrl, {
+        headers: {
+          Authorization: `${token_type} ${access_token}`,
+          Accept: "application/json",
+        },
+      })
+    ).json();
+    const userData = responseData.response;
+    let user = await User.findOne({ email: userData.email });
+    if (!user) {
+      user = await User.create({
+        name: userData.name,
+        username: userData.nickname,
+        password: "",
+        email: userData.email,
+        socialOnly: true,
+      });
+    }
+    req.session.loggedIn = true;
+    req.session.loggedInUser = user;
+    res.redirect("/");
+  }
 };
