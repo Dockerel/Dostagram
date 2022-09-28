@@ -1,6 +1,8 @@
 import fetch from "node-fetch";
 import User from "../models/User.js";
 
+let kakaoTempData;
+
 export const logout = (req, res) => {
   req.session.loggedIn = false;
   req.session.loggedInUser = null;
@@ -79,4 +81,100 @@ export const finishGithubLogin = async (req, res) => {
     req.session.loggedInUser = user;
     return res.redirect("/");
   }
+};
+
+export const startKakaoLogin = async (req, res) => {
+  const baseUrl = "https://kauth.kakao.com/oauth/authorize";
+  const redirectUrl = "http://localhost:4000/user/kakao/finish";
+  const config = {
+    response_type: "code",
+    client_id: process.env.KAKAO_REST_API_KEY,
+    redirect_uri: redirectUrl,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  res.redirect(finalUrl);
+};
+
+export const finishKakaoLogin = async (req, res) => {
+  const baseUrl = "https://kauth.kakao.com/oauth/token";
+  const redirectUrl = "http://localhost:4000/user/kakao/finish";
+  const { code } = req.query;
+  const config = {
+    grant_type: "authorization_code",
+    client_id: process.env.KAKAO_REST_API_KEY,
+    redirect_uri: redirectUrl,
+    code: code,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  const tokenRequest = await (
+    await fetch(finalUrl, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+  ).json();
+  if ("access_token" in tokenRequest) {
+    const apiUrl = "https://kapi.kakao.com/v2/user/me";
+    const { access_token } = tokenRequest;
+    const { token_type } = tokenRequest;
+    const responseData = await (
+      await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `${token_type} ${access_token}`,
+        },
+      })
+    ).json();
+    const userData = responseData.kakao_account;
+    if (
+      userData.has_email &&
+      userData.is_email_valid &&
+      userData.is_email_verified
+    ) {
+      const user = await User.findOne({ email: userData.email });
+      if (!user) {
+        kakaoTempData = userData;
+        return res.render("loginKakaoPlus", {
+          pageTitle: "Join by Kakao",
+          userData,
+        });
+      }
+      req.session.loggedIn = true;
+      req.session.loggedInUser = user;
+      return res.redirect("/");
+    } else {
+      return res.render("login", {
+        pageTitle: "Login",
+        errorMessage: "Error occurred. Use Join tab to make Account.",
+      });
+    }
+  }
+};
+
+export const inputKakaoData = async (req, res) => {
+  const { username } = req.body;
+  const exists = await User.exists({ username });
+  const userData = kakaoTempData;
+  if (exists) {
+    return res.render("loginKakaoPlus", {
+      pageTitle: "Join by Kakao",
+      userData,
+      errorMessage: "Same username already exists.",
+    });
+  }
+  const user = await User.create({
+    name: userData.profile.nickname,
+    username,
+    password: "",
+    email: userData.email,
+    socialOnly: true,
+  });
+  kakaoTempData = "";
+  req.session.loggedIn = true;
+  req.session.loggedInUser = user;
+  return res.redirect("/");
 };
