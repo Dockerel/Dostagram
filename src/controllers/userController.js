@@ -240,3 +240,13 @@ export const finishNaverLogin = async (req, res) => {
     res.redirect("/");
   }
 };
+
+export const profile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findOne({ _id: id });
+  console.log(user);
+  res.render("profile", {
+    pageTitle: `${user.username}'s Profile`,
+    user,
+  });
+};

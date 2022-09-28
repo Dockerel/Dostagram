@@ -4,7 +4,7 @@
 
 /join -> Join ✅
 
-/login -> Login ✅
+/login -> Login : Github ✅, Kakao ✅, Naver ✅
 
 /search -> Search
 

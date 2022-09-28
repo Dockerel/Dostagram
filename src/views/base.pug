@@ -13,6 +13,8 @@ html(lang="en")
                 a(href="/join")
                     button Join
             if loggedIn
+                a(href=`/user/${loggedInUser._id}`)
+                    button Profile
                 a(href="/user/edit")
                     button Edit user
                 a(href="/user/logout")

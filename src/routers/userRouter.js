@@ -5,6 +5,7 @@ import {
   finishNaverLogin,
   inputKakaoData,
   logout,
+  profile,
   startGithubLogin,
   startKakaoLogin,
   startNaverLogin,
@@ -12,6 +13,7 @@ import {
 
 const userRouter = express.Router();
 
+userRouter.route("/:id").get(profile);
 userRouter.route("/logout").get(logout);
 userRouter.route("/github/start").get(startGithubLogin);
 userRouter.route("/github/finish").get(finishGithubLogin);
