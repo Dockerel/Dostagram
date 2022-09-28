@@ -27,6 +27,7 @@ app.use(
   })
 );
 app.use(localMiddleware);
+app.use("/etc", express.static("etc"));
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 

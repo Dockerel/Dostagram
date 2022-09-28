@@ -244,9 +244,24 @@ export const finishNaverLogin = async (req, res) => {
 export const profile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findOne({ _id: id });
-  console.log(user);
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "404:Not Found" });
+  }
   res.render("profile", {
     pageTitle: `${user.username}'s Profile`,
     user,
   });
 };
+
+export const getEdit = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findOne({ _id: id });
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "404:Not Found" });
+  }
+  res.render("edit-profile", {
+    pageTitle: `Edit ${user.username}'s Profile`,
+    user,
+  });
+};
+export const postEdit = (req, res) => {};

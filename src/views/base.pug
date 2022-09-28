@@ -15,7 +15,7 @@ html(lang="en")
             if loggedIn
                 a(href=`/user/${loggedInUser._id}`)
                     button Profile
-                a(href="/user/edit")
+                a(href=`/user/${loggedInUser._id}/edit`)
                     button Edit user
                 a(href="/user/logout")
                     button Logout

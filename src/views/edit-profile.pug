@@ -1,0 +1,10 @@
+extends base
+
+block content 
+    form(method="post")
+        label(for="imageFile") Click here to select file!
+        input(type="file" id="imageFile" name="avatar" accept="image/*")
+        input(type="text" name="name" value=user.name required placeholder="Name")
+        input(type="text" name="username" value=user.username required placeholder="Username")
+        input(type="email" name="name" value=user.email required placeholder="Email")
+        input(type="submit" value="Submit")

@@ -3,8 +3,10 @@ import {
   finishGithubLogin,
   finishKakaoLogin,
   finishNaverLogin,
+  getEdit,
   inputKakaoData,
   logout,
+  postEdit,
   profile,
   startGithubLogin,
   startKakaoLogin,
@@ -13,7 +15,8 @@ import {
 
 const userRouter = express.Router();
 
-userRouter.route("/:id").get(profile);
+userRouter.route("/:id([0-9a-f]{24})").get(profile);
+userRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(postEdit);
 userRouter.route("/logout").get(logout);
 userRouter.route("/github/start").get(startGithubLogin);
 userRouter.route("/github/finish").get(finishGithubLogin);

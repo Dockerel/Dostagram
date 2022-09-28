@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
   email: { type: String, required: true, unique: true },
   socialOnly: { type: Boolean, default: false },
+  avatarUrl: { type: String, default: "../etc/blank-profile.png" },
 });
 
 userSchema.pre("save", async function () {
