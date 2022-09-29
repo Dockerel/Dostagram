@@ -249,7 +249,6 @@ export const profile = async (req, res) => {
   }
   res.render("profile", {
     pageTitle: `${user.username}'s Profile`,
-    user,
   });
 };
 
@@ -264,4 +263,28 @@ export const getEdit = async (req, res) => {
     user,
   });
 };
-export const postEdit = (req, res) => {};
+
+export const postEdit = async (req, res) => {
+  let avatarUrl;
+  const {
+    params: { id },
+    body: { name, username, email },
+  } = req;
+  if (req.file === undefined) {
+    avatarUrl = req.session.loggedInUser.avatarUrl;
+  } else {
+    avatarUrl = req.file.path;
+  }
+  const user = await User.findByIdAndUpdate(
+    id,
+    {
+      name,
+      username,
+      email,
+      avatarUrl: `${avatarUrl}`,
+    },
+    { new: true }
+  );
+  req.session.loggedInUser = user;
+  res.redirect("/");
+};

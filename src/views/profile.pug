@@ -1,7 +1,10 @@
 extends base
 
-block content 
-    img(src=`${user.avatarUrl}`)
-    span #{user.name}
-    span #{user.username}
-    span #{user.email}
+block content
+    if (loggedInUser.avatarUrl).startsWith("../")
+        img(src=`${loggedInUser.avatarUrl}`)
+    else 
+        img(src=`/${loggedInUser.avatarUrl}`)
+    span #{loggedInUser.name}
+    span #{loggedInUser.username}
+    span #{loggedInUser.email}

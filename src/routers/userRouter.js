@@ -12,11 +12,15 @@ import {
   startKakaoLogin,
   startNaverLogin,
 } from "../controllers/userController.js";
+import { avatarUpload } from "../middleware.js";
 
 const userRouter = express.Router();
 
 userRouter.route("/:id([0-9a-f]{24})").get(profile);
-userRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(postEdit);
+userRouter
+  .route("/:id([0-9a-f]{24})/edit")
+  .get(getEdit)
+  .post(avatarUpload.single("avatar"), postEdit);
 userRouter.route("/logout").get(logout);
 userRouter.route("/github/start").get(startGithubLogin);
 userRouter.route("/github/finish").get(finishGithubLogin);
