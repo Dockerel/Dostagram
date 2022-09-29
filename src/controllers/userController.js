@@ -1,4 +1,3 @@
-import { token } from "morgan";
 import fetch from "node-fetch";
 import User from "../models/User.js";
 
