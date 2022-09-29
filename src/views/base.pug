@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
     head
         link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.11/mvp.css")
+        link(rel="stylesheet", href="/static/css/styles.css")
         title #{pageTitle} | MyBlog
     body 
         div.status-bar
@@ -25,3 +26,4 @@ html(lang="en")
             //-     button ETC
         block content
     include partials/footer
+    script(src="assets/js/main.js") 

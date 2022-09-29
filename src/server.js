@@ -1,16 +1,13 @@
-import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import "./db.js";
-import "./models/User.js";
+
 import { localMiddleware } from "./middleware.js";
 import globalRouter from "./routers/globalRouter.js";
 import userRouter from "./routers/userRouter.js";
 import postRouter from "./routers/postRouter.js";
 
-const PORT = 4000;
 const app = express();
 const logger = morgan("dev");
 
@@ -30,12 +27,9 @@ app.use(
 app.use(localMiddleware);
 app.use("/etc", express.static("etc"));
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/post", postRouter);
 
-const handleListening = () => {
-  console.log(`✅ Server Listening on port ${PORT} | http://localhost:${PORT}`);
-};
-
-app.listen(PORT, handleListening);
+export default app;
