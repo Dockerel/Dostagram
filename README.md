@@ -14,7 +14,7 @@
 
 /user/logout -> Log Out ✅
 
-/user/:id/edit -> Edit MY Profile
+/user/:id/edit -> Edit MY Profile ✅
 
 /user/delete -> Delete MY Profile
 

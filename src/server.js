@@ -8,6 +8,7 @@ import "./models/User.js";
 import { localMiddleware } from "./middleware.js";
 import globalRouter from "./routers/globalRouter.js";
 import userRouter from "./routers/userRouter.js";
+import postRouter from "./routers/postRouter.js";
 
 const PORT = 4000;
 const app = express();
@@ -31,6 +32,7 @@ app.use("/etc", express.static("etc"));
 app.use("/uploads", express.static("uploads"));
 app.use("/", globalRouter);
 app.use("/user", userRouter);
+app.use("/post", postRouter);
 
 const handleListening = () => {
   console.log(`✅ Server Listening on port ${PORT} | http://localhost:${PORT}`);
