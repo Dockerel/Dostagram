@@ -5,9 +5,11 @@ html(lang="en")
         link(rel="stylesheet", href="/static/css/styles.css")
         title #{pageTitle} | MyBlog
     body 
-        div.status-bar
+        header.status-bar
             a(href="/")
                 button Home
+            a(href="/search")
+                button Search
             if !loggedIn
                 a(href="/login")
                     button Login
@@ -24,6 +26,7 @@ html(lang="en")
                     button Logout
             //- a(href="/usage")
             //-     button ETC
-        block content
+        main
+            block content
     include partials/footer
     script(src="assets/js/main.js") 

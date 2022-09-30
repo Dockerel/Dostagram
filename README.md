@@ -6,7 +6,7 @@
 
 /login -> Login : Github ✅, Kakao ✅, Naver ✅
 
-/search -> Search
+/search -> Search ✅
 
 ---
 
@@ -20,13 +20,11 @@
 
 ---
 
-/post/write -> Write post
+/post/write -> Write post ✅
 
-/post/:id -> See post
+/post/:id/edit -> Edit post ✅
 
-/post/:id/edit -> Edit post
-
-/post/:id/delete -> Delete post
+/post/:id/delete -> Delete post ✅
 
 ---
 

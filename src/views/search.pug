@@ -1,0 +1,13 @@
+extends base
+include mixins/post-object
+
+block content
+    form.search(method="POST")
+        input(type="text" name="searchKeyword" placeholder="Search")
+        input(type="submit" value="Search")
+    if posts
+        each post in posts 
+            +post(post)
+            span #{post._id}
+        else 
+            span Sorry nothing found.

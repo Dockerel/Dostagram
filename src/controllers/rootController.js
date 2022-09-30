@@ -1,8 +1,10 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import Post from "../models/Post.js";
 
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "Home" });
+export const home = async (req, res) => {
+  const posts = await Post.find({}).sort({ createdAt: "desc" });
+  res.render("home", { pageTitle: "Home", posts });
 };
 
 export const getJoin = (req, res) => {
@@ -74,6 +76,19 @@ export const postLogin = async (req, res) => {
   res.redirect("/");
 };
 
-export const search = (req, res) => {
-  res.end();
+export const getSearch = (req, res) => {
+  res.render("search", { pageTitle: "Search" });
+};
+
+export const postSearch = async (req, res) => {
+  const { searchKeyword } = req.body;
+  let posts = [];
+  if (searchKeyword) {
+    posts = await Post.find({
+      content: {
+        $regex: new RegExp(searchKeyword, "i"),
+      },
+    });
+  }
+  res.render("search", { pageTitle: "Search", posts });
 };

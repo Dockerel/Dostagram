@@ -1,0 +1,13 @@
+mixin post(post)
+    div
+        a(href=`/post/${post._id}/edit`)
+            span Edit this post
+        a(href=`/post/${post._id}/delete`)
+            span Delete this post
+        div#image-slider
+            each imageUrl in post.imagesUrl 
+                img(src=imageUrl)
+        div#content
+            span #{post.content}
+            span #{post.hashtags}
+            span #{post.createdAt}

@@ -1,0 +1,7 @@
+extends base
+
+block content 
+    form(method="post")
+        input(type="text" name="content" required placeholder="Content" value=post.content)
+        input(type="text" name="hashtags" required placeholder="Hashtags" value=post.hashtags.join())
+        input(type="submit" value="Submit")

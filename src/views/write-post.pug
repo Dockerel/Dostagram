@@ -1,0 +1,9 @@
+extends base
+
+block content 
+    form(method="post" enctype="multipart/form-data")
+        label(for="imageFile") Click here to select images!
+        input(type="file" id="imageFile" required multiple name="postImages" accept="image/*")
+        input(type="text" name="content" required placeholder="Content")
+        input(type="text" name="hashtags" required placeholder="Hashtags")
+        input(type="submit" value="Submit")
