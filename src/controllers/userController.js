@@ -248,6 +248,7 @@ export const profile = async (req, res) => {
   }
   res.render("profile", {
     pageTitle: `${user.username}'s Profile`,
+    user,
   });
 };
 

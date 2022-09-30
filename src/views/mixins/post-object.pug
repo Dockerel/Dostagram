@@ -7,6 +7,9 @@ mixin post(post)
         div#image-slider
             each imageUrl in post.imagesUrl 
                 img(src=imageUrl)
+        div#post-owner
+            a(href=`/user/${post.owner.id}`) 
+                span #{post.owner.username}
         div#content
             span #{post.content}
             span #{post.hashtags}

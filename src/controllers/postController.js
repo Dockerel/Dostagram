@@ -5,6 +5,7 @@ export const getWritePost = (req, res) => {
 };
 
 export const postWritePost = async (req, res) => {
+  const { _id } = req.session.loggedInUser;
   const { files } = req;
   const {
     body: { content, hashtags },
@@ -13,6 +14,7 @@ export const postWritePost = async (req, res) => {
     imagesUrl: Post.formatImagesUrl(files),
     content,
     hashtags: Post.formatHashtags(hashtags),
+    owner: _id,
   });
   res.redirect("/");
 };

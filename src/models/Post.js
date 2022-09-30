@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
     required: true,
     default: new Date().toLocaleDateString(),
   },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
 postSchema.static("formatImagesUrl", function (imagesUrl) {

@@ -3,7 +3,9 @@ import bcrypt from "bcrypt";
 import Post from "../models/Post.js";
 
 export const home = async (req, res) => {
-  const posts = await Post.find({}).sort({ createdAt: "desc" });
+  const posts = await Post.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   res.render("home", { pageTitle: "Home", posts });
 };
 
@@ -88,7 +90,7 @@ export const postSearch = async (req, res) => {
       content: {
         $regex: new RegExp(searchKeyword, "i"),
       },
-    });
+    }).populate("owner");
   }
   res.render("search", { pageTitle: "Search", posts });
 };
