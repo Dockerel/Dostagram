@@ -5,9 +5,9 @@ const postSchema = mongoose.Schema({
   content: { type: String, required: true },
   hashtags: [{ type: String, required: true }],
   createdAt: {
-    type: Date,
+    type: String,
     required: true,
-    default: new Date().toLocaleDateString(),
+    default: Date.now,
   },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });

@@ -1,0 +1,31 @@
+.main-logo {
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+}
+
+.status-bar {
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 50px;
+  border-bottom: 1px solid $grey;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  .status-bar-menu {
+    font-size: 28px;
+    a {
+      margin-left: 28px;
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+.main-content {
+  margin-top: 100px;
+}

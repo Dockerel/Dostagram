@@ -1,32 +1,38 @@
 doctype html
 html(lang="en")
     head
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.11/mvp.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;500&display=swap" rel="stylesheet")
         link(rel="stylesheet", href="/static/css/styles.css")
         title #{pageTitle} | MyBlog
     body 
         header.status-bar
-            a(href="/")
-                button Home
-            a(href="/search")
-                button Search
-            if !loggedIn
-                a(href="/login")
-                    button Login
-                a(href="/join")
-                    button Join
-            if loggedIn
-                a(href="/post/write")
-                    button Write Post
-                a(href=`/user/${loggedInUser._id}`)
-                    button Profile
-                a(href=`/user/${loggedInUser._id}/edit`)
-                    button Edit user
-                a(href="/user/logout")
-                    button Logout
-            //- a(href="/usage")
-            //-     button ETC
-        main
+            a(href="/") 
+                span.main-logo Dostagram
+            div.status-bar-menu
+                a(href="/")
+                    i.fas.fa-house
+                a(href="/search")
+                    i.far.fa-paper-plane
+                if !loggedIn
+                    a(href="/login")
+                        i.fab.fa-instagram
+                    a(href="/join")
+                        i.fas.fa-right-to-bracket
+                if loggedIn
+                    a(href="/post/write").write-menu
+                        i.fas.fa-pen
+                    a(href=`/user/${loggedInUser._id}`)
+                        img(src=loggedInUser.avatarUrl)
+                    a(href=`/user/${loggedInUser._id}/edit`)
+                        i.fas.fa-user-gear
+                    a(href="/user/logout")
+                        i.fas.fa-right-from-bracket
+                //- a(href="/usage")
+                //-     button ETC
+        main.main-content
             block content
     include partials/footer
-    script(src="assets/js/main.js") 
+    block script

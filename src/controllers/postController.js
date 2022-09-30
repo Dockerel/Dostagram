@@ -14,6 +14,7 @@ export const postWritePost = async (req, res) => {
     imagesUrl: Post.formatImagesUrl(files),
     content,
     hashtags: Post.formatHashtags(hashtags),
+    createdAt: new Date().toLocaleString(),
     owner: _id,
   });
   res.redirect("/");
