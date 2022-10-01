@@ -4,7 +4,7 @@ mixin post(post)
             div
                 img(src=post.owner.avatarUrl)
                 span #{post.owner.username}
-            div
+            div.optionBtn
                 if loggedIn
                     if loggedInUser._id === post.owner.id
                         a(href=`/post/${post._id}/edit`)
@@ -23,9 +23,11 @@ mixin post(post)
                 i.fas.fa-angle-right(id=`${post.id}RightI`)
 
         div#post-owner
-            a(href=`/user/${post.owner.id}`) 
+            a(href=`/user/${post.owner.id}`)
                 span #{post.owner.username}
-        div#content
-            span #{post.content}
-            span #{post.hashtags}
-            span #{post.createdAt}
+            details#details 
+                summary#summary #{post.title}
+                span.post-content #{post.content}
+                div
+                    span.post-hashtags #{post.hashtags}
+            span.createdAt #{post.createdAt}

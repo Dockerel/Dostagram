@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema({
   imagesUrl: [{ type: String, required: true }],
-  content: { type: String, required: true },
+  title: { type: String, required: true, maxLength: 25 },
+  content: { type: String, required: true, maxLength: 80 },
   hashtags: [{ type: String, required: true }],
   createdAt: {
     type: String,

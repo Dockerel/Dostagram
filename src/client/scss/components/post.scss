@@ -38,7 +38,7 @@
           border: 2px solid $white;
           transition: border 0.2s ease-in-out;
           &:hover {
-            border: 2px solid tomato;
+            border: 2px solid $blue;
           }
         }
         span {
@@ -50,10 +50,6 @@
         font-size: 18px;
         i {
           margin-right: 10px;
-          transition: color 0.2s ease-in-out;
-          &:hover {
-            color: tomato;
-          }
         }
       }
     }
@@ -66,4 +62,85 @@
 }
 
 .postImageContainer {
+  position: relative;
+  .btnLeft,
+  .btnRight {
+    position: absolute;
+    top: 235px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+  }
+  .btnLeft {
+    left: 0;
+    margin-left: 10px;
+  }
+  .btnRight {
+    right: 0;
+    margin-right: 10px;
+  }
+}
+
+#post-owner {
+  display: flex;
+  margin: 20px 0;
+  position: relative;
+  span {
+    &:first-child {
+      font-weight: 600;
+      font-size: 15px;
+      margin-right: 5px;
+    }
+  }
+}
+
+#details {
+  display: flex;
+  flex-direction: column;
+  summary {
+    list-style: none;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      font-weight: 600;
+      color: $blue;
+    }
+  }
+}
+
+.post-content {
+  display: block;
+  margin: 10px 0;
+}
+
+.post-hashtags {
+  color: #1c4877;
+}
+
+.createdAt {
+  position: absolute;
+  right: 0;
+  font-weight: 600;
+  color: #aeb4b7;
+  font-size: 13px;
+}
+
+.optionBtn {
+  .fa-pen-to-square {
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: $blue;
+    }
+  }
+  .fa-trash {
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: tomato;
+    }
+  }
 }
