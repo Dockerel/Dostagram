@@ -7,14 +7,16 @@ mixin post(post)
                 a(href=`/post/${post._id}/delete`)
                     span Delete this post
         div(style="overflow: hidden")
-            div.container
+            div.container(id=`${post.id}Container`)
                 each imageUrl in post.imagesUrl
                     div.inner
                         img(src=imageUrl).post-image
-            button.btnLeft 
-                i.fas.fa-angle-left
-            button.btnRight
-                i.fas.fa-angle-right
+
+            button.btnLeft(id=`${post.id}LeftBtn`)
+                i.fas.fa-angle-left(id=`${post.id}LeftI`)
+            button.btnRight(id=`${post.id}RightBtn`)
+                i.fas.fa-angle-right(id=`${post.id}RightI`)
+
         div#post-owner
             a(href=`/user/${post.owner.id}`) 
                 span #{post.owner.username}
