@@ -1,12 +1,17 @@
 mixin post(post)
     div.post-container
-        if loggedIn
-            if loggedInUser._id === post.owner.id
-                a(href=`/post/${post._id}/edit`)
-                    span Edit this post
-                a(href=`/post/${post._id}/delete`)
-                    span Delete this post
-        div(style="overflow: hidden")
+        div.post-user-info
+            div
+                img(src=post.owner.avatarUrl)
+                span #{post.owner.username}
+            div
+                if loggedIn
+                    if loggedInUser._id === post.owner.id
+                        a(href=`/post/${post._id}/edit`)
+                            i.fas.fa-pen-to-square
+                        a(href=`/post/${post._id}/delete`)
+                            i.fas.fa-trash
+        div(style="overflow: hidden").postImageContainer
             div.container(id=`${post.id}Container`)
                 each imageUrl in post.imagesUrl
                     div.inner

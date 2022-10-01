@@ -36,7 +36,7 @@ const handleLeftClick = (event) => {
       targetListNumber = i;
     }
   }
-  const pixelLeftVar = 350 * (pageNumber - 1);
+  const pixelLeftVar = 470 * (pageNumber - 1);
   photoContainer.style.transform = `translate(-${pixelLeftVar}px)`;
   if (pageNumber === 0) {
     pageNumber = 0;
@@ -62,7 +62,7 @@ const handleRightClick = (event) => {
     }
   }
 
-  const pixelRightVar = 350 * (pageNumber + 1);
+  const pixelRightVar = 470 * (pageNumber + 1);
   if (pageNumber === photoContainerLength - 1) {
     pageNumber = photoContainerLength - 1;
   } else {
