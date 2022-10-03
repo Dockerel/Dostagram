@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import User from "../models/User.js";
+import Post from "../models/Post.js";
 
 let kakaoTempData;
 
@@ -243,12 +244,14 @@ export const finishNaverLogin = async (req, res) => {
 export const profile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findOne({ _id: id });
+  const posts = await Post.find({}).populate("owner");
   if (!user) {
     return res.status(404).render("404", { pageTitle: "404:Not Found" });
   }
   res.render("profile", {
     pageTitle: `${user.username}'s Profile`,
     user,
+    posts,
   });
 };
 

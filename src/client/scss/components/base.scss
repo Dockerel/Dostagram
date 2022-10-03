@@ -1,6 +1,11 @@
 .main-logo {
   font-family: "Pacifico", cursive;
   font-size: 30px;
+  &:hover {
+    background: linear-gradient(to right, #fbcac9, #8ca6ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .status-bar {

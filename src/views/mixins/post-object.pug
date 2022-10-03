@@ -1,9 +1,13 @@
 mixin post(post)
-    div.post-container
+    div.post-container.profile-post.home-post
         div.post-user-info
             div
-                img(src=post.owner.avatarUrl)
-                span #{post.owner.username}
+                a(href=`/user/${post.owner.id}`) 
+                    if (post.owner.avatarUrl).startsWith("../")
+                        img(src=`${post.owner.avatarUrl}`)
+                    else 
+                        img(src=`/${post.owner.avatarUrl}`)
+                    span #{post.owner.username}
             div.optionBtn
                 if loggedIn
                     if loggedInUser._id === post.owner.id

@@ -28,6 +28,7 @@ app.use(localMiddleware);
 app.use("/etc", express.static("etc"));
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"));
+app.use("/user/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/post", postRouter);

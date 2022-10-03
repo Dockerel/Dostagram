@@ -7,6 +7,11 @@
 @import "./components/post.scss";
 
 /* Screens */
+@import "./screens/search.scss";
+@import "./screens/join.scss";
+@import "./screens/login.scss";
+@import "./screens/write-post.scss";
+@import "./screens/profile.scss";
 
 a {
   color: inherit;
@@ -17,4 +22,11 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
+}
+
+footer {
+  font-weight: 600;
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
 }

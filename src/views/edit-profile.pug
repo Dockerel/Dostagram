@@ -1,10 +1,16 @@
 extends base
 
 block content 
-    form(method="post" enctype="multipart/form-data")
-        label(for="imageFile") Click here to select file!
-        input(type="file" id="imageFile" name="avatar" accept="image/*")
+    form(method="post" enctype="multipart/form-data").post-write-edit
+        span.main-logo Edit Profile
+        div
+            input(type="text" placeholder="Select your profile image.").filename
+            label(for="imageFile").fileSelectBtn
+                i.fas.fa-link
+            input(type="file" id="imageFile" name="avatar" accept="image/*").hiddenBtn
         input(type="text" name="name" value=user.name required placeholder="Name")
         input(type="text" name="username" value=user.username required placeholder="Username")
         input(type="email" name="email" value=user.email required placeholder="Email")
         input(type="submit" value="Submit")
+block script 
+    script(src="../static/js/avatarUpload.js") 

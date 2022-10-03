@@ -1,0 +1,68 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.joinBody {
+  background-color: $bg;
+}
+.join-column {
+  width: 350px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $border;
+  padding: 30px;
+  margin-bottom: 8px;
+  .main-logo {
+    margin-bottom: 30px;
+  }
+  &:last-child {
+    padding: 20px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+    a {
+      color: $blue;
+    }
+  }
+  .join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      width: 300px;
+      height: 40px;
+      padding: 0 15px;
+      border-radius: 5px;
+      border: 1px solid $border;
+      background-color: $bg;
+      margin-bottom: 5px;
+      &:focus {
+        outline: none;
+      }
+      &:last-child {
+        width: 332px;
+        background-color: #3faef8;
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          background-color: #22a4fa;
+        }
+      }
+    }
+  }
+  .join {
+    display: flex;
+    flex-direction: column;
+  }
+}

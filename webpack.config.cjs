@@ -7,6 +7,8 @@ module.exports = {
   entry: {
     main: BASE_JS + "main.js",
     postMovement: BASE_JS + "postMovement.js",
+    fileUpload: BASE_JS + "fileUpload.js",
+    avatarUpload: BASE_JS + "avatarUpload.js",
   },
   plugins: [
     new MiniCssExtractPlugin({

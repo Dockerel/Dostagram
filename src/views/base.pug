@@ -25,7 +25,7 @@ html(lang="en")
                     a(href="/post/write").write-menu
                         i.fas.fa-pen
                     a(href=`/user/${loggedInUser._id}`)
-                        img(src=loggedInUser.avatarUrl)
+                        img(src=`/${loggedInUser.avatarUrl}`)
                     a(href=`/user/${loggedInUser._id}/edit`)
                         i.fas.fa-user-gear
                     a(href="/user/logout")

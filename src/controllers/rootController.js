@@ -90,7 +90,9 @@ export const postSearch = async (req, res) => {
       content: {
         $regex: new RegExp(searchKeyword, "i"),
       },
-    }).populate("owner");
+    })
+      .sort({ createdAt: "desc" })
+      .populate("owner");
   }
   res.render("search", { pageTitle: "Search", posts });
 };

@@ -3,11 +3,14 @@ include mixins/post-object
 
 block content
     form.search(method="POST")
-        input(type="text" name="searchKeyword" placeholder="Search")
-        input(type="submit" value="Search")
+        i.fas.fa-magnifying-glass
+        input(type="text" name="searchKeyword" placeholder="Search").searchBox
+        input(type="submit" value="Search").searchBtn
     if posts
         each post in posts 
             +post(post)
-            span #{post._id}
         else 
             span Sorry nothing found.
+
+block script 
+    script(src="../static/js/postMovement.js")

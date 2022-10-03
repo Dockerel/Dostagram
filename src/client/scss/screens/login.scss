@@ -1,0 +1,134 @@
+.loginBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg;
+  .loginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      width: 400px;
+      .main-logo {
+        font-size: 40px;
+        display: block;
+        margin-bottom: 50px;
+      }
+      .login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input {
+          width: 300px;
+          height: 40px;
+          padding: 0 15px;
+          border-radius: 5px;
+          border: 1px solid $border;
+          background-color: $bg;
+          margin-bottom: 5px;
+          &:focus {
+            outline: none;
+          }
+        }
+        .submitLogin {
+          width: 332px;
+          background-color: #3faef8;
+          border: none;
+          color: white;
+          font-weight: 600;
+          font-size: 15px;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            background-color: #22a4fa;
+          }
+        }
+      }
+      background-color: white;
+    }
+  }
+}
+
+.loginPage-column {
+  border: 1px solid $border;
+  &:first-child {
+    padding: 50px 0;
+    margin-bottom: 12px;
+  }
+  &:last-child {
+    padding: 20px 0;
+    font-size: 15px;
+    font-weight: 600;
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+    a {
+      color: $blue;
+    }
+  }
+}
+
+.login-github,
+.login-kakao,
+.login-naver {
+  a {
+    display: flex;
+    width: 63%;
+    justify-content: space-around;
+    align-items: center;
+    height: 45px;
+    border-radius: 10px;
+    color: white;
+    padding: 0 40px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.login-github {
+  a {
+    background-color: #606875;
+    &:hover {
+      background-color: #575f6b;
+    }
+  }
+  margin-bottom: 5px;
+}
+.login-kakao {
+  a {
+    background-color: #f9e126;
+    &:hover {
+      background-color: #e8d124;
+    }
+  }
+  margin-bottom: 5px;
+}
+.login-naver {
+  a {
+    background-color: #00c623;
+    &:hover {
+      background-color: #03af22;
+    }
+  }
+  margin-bottom: 5px;
+}
+
+@keyframes errorMessageAnimation {
+  from {
+    color: red;
+  }
+  to {
+    color: black;
+  }
+}
+
+#login-error {
+  font-weight: 600;
+  animation: errorMessageAnimation 2s ease-in-out forwards;
+  margin-bottom: 30px;
+}
