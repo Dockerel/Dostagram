@@ -1,0 +1,17 @@
+mixin chat(chat)
+    if loggedIn
+        if chat.owner.id === loggedInUser._id
+            div.my-chat
+                a(href=`/user/${chat.owner.id}`)
+                    img(src=chat.owner.avatarUrl).chat-profileImage
+                    span.chat-content #{chat.content}
+        else
+            div.chat-object
+                a(href=`/user/${chat.owner.id}`)
+                    img(src=chat.owner.avatarUrl).chat-profileImage
+                    span.chat-content #{chat.content}
+    else 
+        div.chat-object
+                a(href=`/user/${chat.owner.id}`)
+                    img(src=chat.owner.avatarUrl).chat-profileImage
+                    span.chat-content #{chat.content}

@@ -9,6 +9,7 @@ module.exports = {
     postMovement: BASE_JS + "postMovement.js",
     fileUpload: BASE_JS + "fileUpload.js",
     avatarUpload: BASE_JS + "avatarUpload.js",
+    chatUpload: BASE_JS + "chatUpload.js",
   },
   plugins: [
     new MiniCssExtractPlugin({

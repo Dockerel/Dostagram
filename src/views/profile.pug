@@ -14,8 +14,8 @@ block content
                 span #{user.username}
                 span #{user.email}
         div.profile-post
-            each post in posts 
-                if loggedInUser._id === post.owner.id
+            each post in posts
+                if post.owner.id === id
                     +post(post)
 block script 
     script(src="../static/js/postMovement.js")

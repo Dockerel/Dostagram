@@ -5,8 +5,10 @@
 /* Components */
 @import "./components/base.scss";
 @import "./components/post.scss";
+@import "./components/chat.scss";
 
 /* Screens */
+@import "./screens/home.scss";
 @import "./screens/search.scss";
 @import "./screens/join.scss";
 @import "./screens/login.scss";

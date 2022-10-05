@@ -1,0 +1,37 @@
+.chat-object {
+  .chat-profileImage {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 7px;
+  }
+  .chat-content {
+    display: inline-block;
+    background-color: $blue;
+    color: white;
+    padding: 7px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 7px;
+    border-top-left-radius: 0;
+  }
+}
+
+.my-chat {
+  margin-top: 13px;
+  display: flex;
+  justify-content: flex-end;
+  .chat-profileImage {
+    display: none;
+  }
+  .chat-content {
+    display: inline-block;
+    background-color: $border;
+    color: black;
+    padding: 7px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 7px;
+    border-top-right-radius: 0;
+  }
+}

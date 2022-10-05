@@ -1,12 +1,14 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import Post from "../models/Post.js";
+import Chat from "../models/Chat.js";
 
 export const home = async (req, res) => {
   const posts = await Post.find({})
     .sort({ createdAt: "desc" })
     .populate("owner");
-  res.render("home", { pageTitle: "Home", posts });
+  const chats = await Chat.find({}).populate("owner");
+  res.render("home", { pageTitle: "Home", posts, chats });
 };
 
 export const getJoin = (req, res) => {
