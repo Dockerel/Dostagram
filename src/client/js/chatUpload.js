@@ -25,18 +25,22 @@ const addChat = (text) => {
 const handleChatBtnClick = async (event) => {
   event.preventDefault();
   const text = chatInput.value;
-  const response = await fetch("/api/chat/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      text,
-    }),
-  });
-  if (response.status === 201) {
-    chatInput.value = "";
-    addChat(text);
+  if (text === "") {
+    console.log("no content");
+  } else {
+    const response = await fetch("/api/chat/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text,
+      }),
+    });
+    if (response.status === 201) {
+      chatInput.value = "";
+      addChat(text);
+    }
   }
 };
 
