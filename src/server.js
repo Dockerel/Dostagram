@@ -8,6 +8,7 @@ import globalRouter from "./routers/globalRouter.js";
 import userRouter from "./routers/userRouter.js";
 import postRouter from "./routers/postRouter.js";
 import apiRouter from "./routers/apiRouter.js";
+import videoRouter from "./routers/videoRouter.js";
 
 const app = express();
 const logger = morgan("dev");
@@ -33,6 +34,7 @@ app.use("/user/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/post", postRouter);
+app.use("/video", videoRouter);
 app.use("/api", apiRouter);
 
 export default app;

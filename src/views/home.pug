@@ -1,28 +1,35 @@
 extends base
 include mixins/post-object
 include mixins/chat-object
+include mixins/video-object
 
 block content
-    div.home
-        div.post-main
-            each post in posts 
-                +post(post)
+    di
+        div
+            each video in videos
+                +video(video)
             else 
-                span Sorry nothing found.
-        div.user-chat
-            div.chat-screen
-                each chat in chats
-                    +chat(chat)
-            if loggedIn
-                form.chat-form
-                    input(type="text" name="chat" placeholder="Send message!" maxlength="25" required).chat-input
-                    button.chat-submit-button
-                        i.fas.fa-paper-plane
-            else 
-                form.chat-form
-                    input(disabled type="text" name="chat" placeholder="Login to send message!" maxlength="25" required).chat-input
-                    button(disabled).chat-submit-button
-                        i.fas.fa-paper-plane
+                span No Videos.
+        div.home
+            div.post-main
+                each post in posts 
+                    +post(post)
+                else 
+                    span Sorry nothing found.
+            div.user-chat
+                div.chat-screen
+                    each chat in chats
+                        +chat(chat)
+                if loggedIn
+                    form.chat-form
+                        input(type="text" name="chat" placeholder="Send message!" maxlength="25" required).chat-input
+                        button.chat-submit-button
+                            i.fas.fa-paper-plane
+                else 
+                    form.chat-form
+                        input(disabled type="text" name="chat" placeholder="Login to send message!" maxlength="25" required).chat-input
+                        button(disabled).chat-submit-button
+                            i.fas.fa-paper-plane
 
 block script 
     script(src="../static/js/postMovement.js")

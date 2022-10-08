@@ -2,13 +2,15 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import Post from "../models/Post.js";
 import Chat from "../models/Chat.js";
+import Video from "../models/Video.js";
 
 export const home = async (req, res) => {
   const posts = await Post.find({})
     .sort({ createdAt: "desc" })
     .populate("owner");
   const chats = await Chat.find({}).populate("owner");
-  res.render("home", { pageTitle: "Home", posts, chats });
+  const videos = await Video.find({}).populate("owner");
+  res.render("home", { pageTitle: "Home", posts, chats, videos });
 };
 
 export const getJoin = (req, res) => {
