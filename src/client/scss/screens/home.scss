@@ -1,5 +1,6 @@
 .home {
   display: flex;
+  margin-top: 100px;
 }
 
 .user-chat {
@@ -53,5 +54,22 @@
       height: 40px;
       border: none;
     }
+  }
+}
+.home-video {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border: 1px solid $border;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  max-width: 460px;
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

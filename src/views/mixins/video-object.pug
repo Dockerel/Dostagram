@@ -1,5 +1,5 @@
 mixin video(video)
     div.video-object
-        a(href=`/video/watch/${video._id}`) 
-            img(src=video.owner.avatarUrl)
-            span #{video.owner.username}
+        a(href=`/video/watch/${video._id}`).video-link
+            img.video-profileimage(src=video.owner.avatarUrl)
+            span.video-username #{video.owner.username}

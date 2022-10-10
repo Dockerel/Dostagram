@@ -20,6 +20,5 @@ export const postVideoUpload = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findOne({ _id: id });
-  console.log(video);
   return res.render("watch", { pageTitle: "Watch", video });
 };
