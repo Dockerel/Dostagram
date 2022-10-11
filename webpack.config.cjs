@@ -10,6 +10,8 @@ module.exports = {
     fileUpload: BASE_JS + "fileUpload.js",
     avatarUpload: BASE_JS + "avatarUpload.js",
     chatUpload: BASE_JS + "chatUpload.js",
+    videoUpload: BASE_JS + "videoUpload.js",
+    videoComment: BASE_JS + "videoComment.js",
   },
   plugins: [
     new MiniCssExtractPlugin({

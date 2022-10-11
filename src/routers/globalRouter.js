@@ -8,12 +8,13 @@ import {
   getSearch,
   postSearch,
 } from "../controllers/rootController.js";
+import { publicUserOnly } from "../middleware.js";
 
 const globalRouter = express.Router();
 
 globalRouter.route("/").get(home);
-globalRouter.route("/join").get(getJoin).post(postJoin);
-globalRouter.route("/login").get(getLogin).post(postLogin);
+globalRouter.route("/join").all(publicUserOnly).get(getJoin).post(postJoin);
+globalRouter.route("/login").all(publicUserOnly).get(getLogin).post(postLogin);
 globalRouter.route("/search").get(getSearch).post(postSearch);
 
 export default globalRouter;

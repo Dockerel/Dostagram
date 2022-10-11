@@ -6,6 +6,24 @@ export const localMiddleware = (req, res, next) => {
   next();
 };
 
+export const loggedInUserOnly = (req, res, next) => {
+  if (!req.session.loggedIn) {
+    req.flash("error", "Not Authorized");
+    return res.redirect("/login");
+  } else {
+    next();
+  }
+};
+
+export const publicUserOnly = (req, res, next) => {
+  if (req.session.loggedIn) {
+    req.flash("error", "Not Authorized");
+    return res.redirect("/");
+  } else {
+    next();
+  }
+};
+
 export const avatarUpload = multer({
   dest: "uploads/avatar",
   limits: { fileSize: 3000000 },

@@ -3,6 +3,7 @@ import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
+import flash from "express-flash";
 import { localMiddleware } from "./middleware.js";
 import globalRouter from "./routers/globalRouter.js";
 import userRouter from "./routers/userRouter.js";
@@ -26,6 +27,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
+app.use(flash());
 app.use(localMiddleware);
 app.use("/etc", express.static("etc"));
 app.use("/uploads", express.static("uploads"));

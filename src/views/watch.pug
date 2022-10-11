@@ -1,34 +1,30 @@
 extends base
+include mixins/comment-object
 
 block content
-    div.video
+    div.video(data-id=`${video._id}`)
         div.video-watch
             video(src=`/${video.videoUrl}`)
+            div.video-owner
+                a(href=`/user/${video.owner._id}`) 
+                    img(src=`/${video.owner.avatarUrl}`)
+                    span #{video.owner.username}
+            div.video-control
+                div.timeline
+                    input(type="range" min=0 max=100 step=1 value=0 disabled).timeline-input
+                div.control-btns
+                    button.playAndPause-btn
+                        i.fas.fa-pause
+                    button.mute-btn
+                        i.fas.fa-volume-off
+
+
         div.comment
-            div.comment-object
-                div.comment-column
-                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFlqa7Kso7R6Tvu9hPCHUqgTSOWhu6C_pdnw&usqp=CAU")
-                    div.comment-info
-                        span.comment-username Dobby
-                        span.comment-content This video is nice
-                div.comment-column
-                    i.fas.fa-xmark
-            div.comment-object
-                div.comment-column
-                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFlqa7Kso7R6Tvu9hPCHUqgTSOWhu6C_pdnw&usqp=CAU")
-                    div.comment-info
-                        span.comment-username Dobby
-                        span.comment-content This video is nice
-                div.comment-column
-                    i.fas.fa-xmark
-            div.comment-object
-                div.comment-column
-                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFlqa7Kso7R6Tvu9hPCHUqgTSOWhu6C_pdnw&usqp=CAU")
-                    div.comment-info
-                        span.comment-username Dobby
-                        span.comment-content This video is nice
-                div.comment-column
-                    i.fas.fa-xmark
+            each comment in comments
+                +comment(comment)
             div.comment-input
-                input(type="text" name="comment")
-                input(type="submit")
+                input(type="text" name="comment" placeholder="Comments...").content-comment
+                input(type="submit").comment-submit
+block script
+    script(src="/static/js/videoUpload.js")
+    script(src="/static/js/videoComment.js")

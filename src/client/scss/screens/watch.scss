@@ -1,4 +1,5 @@
 .video-watch {
+  position: relative;
   width: 30vw;
   height: 100vh;
   background-color: black;
@@ -24,40 +25,128 @@
   width: 25vw;
   padding: 20px;
   border-radius: 10px;
-  .comment-object {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid $border;
-    margin: 10px 0;
-    padding-bottom: 10px;
+}
 
-    .comment-column {
-      display: flex;
-      align-items: center;
-      img {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-      }
-      .comment-info {
-        display: flex;
-        flex-direction: column;
-        .comment-username {
-          font-weight: 600;
-          size: 15px;
-          margin-bottom: 3px;
-        }
-        .comment-content {
-          font-size: 13px;
-        }
-      }
-      i {
-        margin-right: 5px;
+.comment-input {
+  position: absolute;
+  bottom: 0;
+}
+
+.video-owner {
+  position: absolute;
+  top: 100px;
+  align-items: center;
+  margin-left: 20px;
+  a {
+    display: flex;
+    align-items: center;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    span {
+      display: block;
+      margin-left: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 20px;
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: $blue;
       }
     }
   }
 }
-.comment-input {
+
+.video-control {
+  .timeline {
+    position: absolute;
+    top: 75px;
+    left: 20px;
+    width: 90%;
+    .timeline-input {
+      height: 3px;
+      -webkit-appearance: none;
+      margin: 10px 0;
+      width: 100%;
+      background: rgba(131, 131, 131, 0.5);
+    }
+
+    .timeline-input::-webkit-slider-runnable-track {
+      cursor: pointer;
+      border: none;
+    }
+
+    .timeline-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgb(193, 193, 193);
+    }
+  }
+  .control-btns {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 20px;
+      margin-right: 10px;
+    }
+    .mute-btn {
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+}
+
+.comment-object {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $border;
+  margin: 10px 0;
+  padding-bottom: 10px;
+  .comment-column {
+    display: flex;
+    align-items: center;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+    .comment-info {
+      display: flex;
+      flex-direction: column;
+      .comment-username {
+        font-weight: 600;
+        size: 15px;
+        margin-bottom: 3px;
+      }
+      .comment-content {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.comment-delete {
   position: absolute;
-  bottom: 0;
+  right: 10px;
+  top: 5px;
+  transition: color 0.2s ease-in-out;
+  i {
+    font-size: 20px;
+  }
+  &:hover {
+    color: tomato;
+  }
 }
