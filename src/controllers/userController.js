@@ -86,7 +86,7 @@ export const finishGithubLogin = async (req, res) => {
 
 export const startKakaoLogin = async (req, res) => {
   const baseUrl = "https://kauth.kakao.com/oauth/authorize";
-  const redirectUrl = "http://localhost:4000/user/kakao/finish";
+  const redirectUrl = "https://myblog-reloaded.herokuapp.com/user/kakao/finish";
   const config = {
     response_type: "code",
     client_id: process.env.KAKAO_REST_API_KEY,
@@ -99,7 +99,7 @@ export const startKakaoLogin = async (req, res) => {
 
 export const finishKakaoLogin = async (req, res) => {
   const baseUrl = "https://kauth.kakao.com/oauth/token";
-  const redirectUrl = "http://localhost:4000/user/kakao/finish";
+  const redirectUrl = "https://myblog-reloaded.herokuapp.com/user/kakao/finish";
   const { code } = req.query;
   const config = {
     grant_type: "authorization_code",
@@ -182,7 +182,7 @@ export const inputKakaoData = async (req, res) => {
 
 export const startNaverLogin = (req, res) => {
   const baseUrl = "https://nid.naver.com/oauth2.0/authorize";
-  const redirectUrl = "http://localhost:4000/user/naver/finish";
+  const redirectUrl = "https://myblog-reloaded.herokuapp.com/user/naver/finish";
   const config = {
     response_type: "code",
     client_id: process.env.NAVER_CLIENT_ID,
