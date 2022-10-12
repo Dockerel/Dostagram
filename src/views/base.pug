@@ -1,3 +1,5 @@
+include mixins/message
+
 doctype html
 html(lang="en")
     head
@@ -8,7 +10,9 @@ html(lang="en")
         link(rel="stylesheet", href="/static/css/styles.css")
         link(rel="shortcut icon" href="#")
         title #{pageTitle} | MyBlog
-    body 
+    body
+        if messages.error
+            +message("error", messages.error)
         header.status-bar
             a(href="/") 
                 span.main-logo Dostagram

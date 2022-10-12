@@ -29,7 +29,32 @@
 
 .comment-input {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  .content-comment {
+    width: 18vw;
+    height: 30px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: $border;
+    &:focus {
+      outline: none;
+    }
+  }
+  .comment-submit {
+    border-radius: 50%;
+    background-color: grey;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    font-size: 30px;
+    transform: rotateZ(-30deg);
+    margin-left: 10px;
+  }
 }
 
 .video-owner {
