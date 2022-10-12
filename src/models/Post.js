@@ -13,12 +13,6 @@ const postSchema = mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
-postSchema.static("formatImagesUrl", function (imagesUrl) {
-  return imagesUrl.map((object) =>
-    object.path ? `/${object.path}` : "/etc/error.png"
-  );
-});
-
 postSchema.static("formatHashtags", function (hashtags) {
   return hashtags
     .split(",")

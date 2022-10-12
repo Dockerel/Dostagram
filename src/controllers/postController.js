@@ -10,8 +10,13 @@ export const postWritePost = async (req, res) => {
   const {
     body: { title, content, hashtags },
   } = req;
+  let tempPost = [];
+  for (let file of files) {
+    tempPost.push(file.location);
+  }
+  console.log(tempPost);
   const result = await Post.create({
-    imagesUrl: Post.formatImagesUrl(files.location),
+    imagesUrl: tempPost,
     title,
     content,
     hashtags: Post.formatHashtags(hashtags),
