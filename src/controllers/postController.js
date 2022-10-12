@@ -11,7 +11,7 @@ export const postWritePost = async (req, res) => {
     body: { title, content, hashtags },
   } = req;
   const result = await Post.create({
-    imagesUrl: Post.formatImagesUrl(files),
+    imagesUrl: Post.formatImagesUrl(files.location),
     title,
     content,
     hashtags: Post.formatHashtags(hashtags),
