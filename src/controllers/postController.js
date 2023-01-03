@@ -14,7 +14,6 @@ export const postWritePost = async (req, res) => {
   for (let file of files) {
     tempPost.push(file.location);
   }
-  console.log(tempPost);
   const result = await Post.create({
     imagesUrl: tempPost,
     title,

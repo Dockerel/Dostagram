@@ -9,6 +9,7 @@ export const postVideoUpload = async (req, res) => {
   const { _id } = req.session.loggedInUser;
   const { path } = req.file;
   const { title, content } = req.body;
+  console.log(`path : ${path}`);
   const video = await Video.create({
     title,
     content,

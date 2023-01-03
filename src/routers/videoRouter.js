@@ -12,7 +12,8 @@ videoRouter
   .route("/upload")
   .all(loggedInUserOnly)
   .get(getVideoUpload)
-  .post(videoUpload.single("video"), postVideoUpload);
+  .post(videoUpload.fields([{ name: "video", maxCount: 1 }]), postVideoUpload);
+// .post(videoUpload.single("video"), postVideoUpload);
 videoRouter.get("/watch/:id([0-9a-f]{24})", watch);
 
 export default videoRouter;
