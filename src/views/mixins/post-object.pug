@@ -6,7 +6,7 @@ mixin post(post)
                     if (post.owner.avatarUrl).startsWith("../")
                         img(src=`${post.owner.avatarUrl}`)
                     else 
-                        img(src=`/${post.owner.avatarUrl}`)
+                        img(src=`${post.owner.avatarUrl}`)
                     span #{post.owner.username}
             div.optionBtn
                 if loggedIn

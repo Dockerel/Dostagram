@@ -4,10 +4,10 @@ include mixins/comment-object
 block content
     div.video(data-id=`${video._id}`)
         div.video-watch
-            video(src=`/${video.videoUrl}`)
+            video(src=`${video.videoUrl}` autoplay)
             div.video-owner
                 a(href=`/user/${video.owner._id}`) 
-                    img(src=`/${video.owner.avatarUrl}`)
+                    img(src=`${video.owner.avatarUrl}`)
                     span #{video.owner.username}
             div.video-control
                 div.timeline

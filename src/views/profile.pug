@@ -8,7 +8,7 @@ block content
                 if (user.avatarUrl).startsWith("../")
                     img(src=`${user.avatarUrl}`)
                 else 
-                    img(src=`/${user.avatarUrl}`)
+                    img(src=`${user.avatarUrl}`)
             div.profile-info
                 span #{user.name}
                 span #{user.username}

@@ -274,10 +274,11 @@ export const postEdit = async (req, res) => {
     params: { id },
     body: { name, username, email },
   } = req;
+
   if (req.file === undefined) {
     avatarUrl = req.session.loggedInUser.avatarUrl;
   } else {
-    avatarUrl = req.file.path;
+    avatarUrl = req.file.location;
   }
   const user = await User.findByIdAndUpdate(
     id,
@@ -285,7 +286,7 @@ export const postEdit = async (req, res) => {
       name,
       username,
       email,
-      avatarUrl: `${avatarUrl}`,
+      avatarUrl,
     },
     { new: true }
   );

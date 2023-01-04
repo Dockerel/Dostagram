@@ -1,7 +1,7 @@
 mixin comment(comment)
     div.comment-object(data-id=`${comment._id}`)
         div.comment-column
-            img(src=`/${comment.owner.avatarUrl}`)
+            img(src=`${comment.owner.avatarUrl}`)
             div.comment-info
                 span.comment-username #{comment.owner.username}
                 span.comment-content #{comment.content}

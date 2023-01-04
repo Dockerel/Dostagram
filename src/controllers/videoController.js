@@ -6,22 +6,45 @@ export const getVideoUpload = (req, res) => {
 };
 
 export const postVideoUpload = async (req, res) => {
-  const { _id } = req.session.loggedInUser;
-  const { path } = req.file;
-  const { title, content } = req.body;
-  console.log(`path : ${path}`);
-  const video = await Video.create({
-    title,
-    content,
-    videoUrl: path,
-    owner: _id,
-  });
-  return res.redirect("/");
+  // const { _id } = req.session.loggedInUser;
+  // const { location } = req.files;
+  // const { title, content } = req.body;
+  // const video = await Video.create({
+  //   title,
+  //   content,
+  //   videoUrl: location,
+  //   owner: _id,
+  // });
+  // return res.redirect("/");
+
+  const {
+    session: {
+      loggedInUser: { _id },
+    },
+    files: { video },
+    body: { title, content },
+  } = req;
+  try {
+    const newVideo = await Video.create({
+      title,
+      content,
+      videoUrl: video[0].location,
+      owner: _id,
+    });
+    return res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    return res.status(400).render("upload", {
+      pageTitle: "Upload Video",
+      errorMessage: error._message,
+    });
+  }
 };
 
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findOne({ _id: id }).populate("owner");
+  console.log(video);
   const comments = await Comment.find({ video: id })
     .sort({ createdAt: "desc" })
     .populate("owner");
