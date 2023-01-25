@@ -63,3 +63,16 @@
   height: 40px;
   border-radius: 5px;
 }
+
+.change-password--span {
+  font-weight: 600;
+  color: $blue;
+}
+
+.change-password {
+  width: 100%;
+  margin-top: 20px;
+  :hover {
+    border-bottom: 1px solid $blue;
+  }
+}

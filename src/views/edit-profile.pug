@@ -12,5 +12,8 @@ block content
         input(type="text" name="username" value=user.username required placeholder="Username")
         input(type="email" name="email" value=user.email required placeholder="Email")
         input(type="submit" value="Submit")
+        div.change-password
+            a(href=`/user/${user.id}/pw-change`)
+                span.change-password--span Change Password &rarr;
 block script 
     script(src="../static/js/avatarUpload.js") 

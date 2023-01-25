@@ -4,9 +4,11 @@ import {
   finishKakaoLogin,
   finishNaverLogin,
   getEdit,
+  getPwChange,
   inputKakaoData,
   logout,
   postEdit,
+  postPwChange,
   profile,
   startGithubLogin,
   startKakaoLogin,
@@ -37,5 +39,9 @@ userRouter
   .post(inputKakaoData);
 userRouter.route("/naver/start").all(publicUserOnly).get(startNaverLogin);
 userRouter.route("/naver/finish").all(publicUserOnly).get(finishNaverLogin);
+userRouter
+  .route("/:id([0-9a-f]{24})/pw-change")
+  .get(getPwChange)
+  .post(postPwChange);
 
 export default userRouter;

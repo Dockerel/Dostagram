@@ -175,3 +175,15 @@
     color: tomato;
   }
 }
+
+.video-delete {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  right: 11%;
+  top: 110px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: red;
+  }
+}

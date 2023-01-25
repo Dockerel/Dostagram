@@ -9,6 +9,11 @@ block content
                 a(href=`/user/${video.owner._id}`) 
                     img(src=`${video.owner.avatarUrl}`)
                     span #{video.owner.username}
+            if user !== null
+                if String(video.owner._id) === user._id
+                    div.video-delete
+                        a(href=`/video/${video._id}/delete`)
+                            i.fas.fa-trash
             div.video-control
                 div.timeline
                     input(type="range" min=0 max=100 step=1 value=0 disabled).timeline-input

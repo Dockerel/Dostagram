@@ -44,11 +44,11 @@ export const postVideoUpload = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findOne({ _id: id }).populate("owner");
-  console.log(video);
   const comments = await Comment.find({ video: id })
     .sort({ createdAt: "desc" })
     .populate("owner");
-  return res.render("watch", { pageTitle: "Watch", video, comments });
+  const user = req.session.loggedInUser;
+  return res.render("watch", { pageTitle: "Watch", video, comments, user });
 };
 
 export const createComment = async (req, res) => {
@@ -78,4 +78,10 @@ export const deleteComment = async (req, res) => {
     await Comment.findOneAndDelete({ _id: targetComment });
     return res.sendStatus(201);
   }
+};
+
+export const deleteVideo = async (req, res) => {
+  const { id } = req.params;
+  await Video.findByIdAndDelete(id);
+  res.redirect("/");
 };

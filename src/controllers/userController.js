@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import Post from "../models/Post.js";
 
@@ -292,4 +293,34 @@ export const postEdit = async (req, res) => {
   );
   req.session.loggedInUser = user;
   res.redirect("/");
+};
+
+export const getPwChange = (req, res) => {
+  return res.render("change-pw");
+};
+
+export const postPwChange = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findOne({ _id: id });
+  if (!user) {
+    return res.status(400).render("login", {
+      pageTitle: "Login",
+      errorMessage: "An account with this id does not exists.",
+    });
+  }
+  const { old_password, new_password } = req.body;
+  if (old_password !== new_password) {
+    const passwordMatch = await bcrypt.compare(old_password, user.password);
+    if (passwordMatch) {
+      const newPw = await bcrypt.hash(new_password, 10);
+      const user = await User.findByIdAndUpdate(
+        id,
+        { password: newPw },
+        { new: true }
+      );
+      return res.redirect("/");
+    }
+  } else {
+    console.log("same password");
+  }
 };

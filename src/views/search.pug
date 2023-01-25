@@ -4,7 +4,7 @@ include mixins/post-object
 block content
     form.search(method="POST")
         i.fas.fa-magnifying-glass
-        input(type="text" name="searchKeyword" placeholder="Search").searchBox
+        input(type="text" name="searchKeyword" placeholder="Search content...").searchBox
         input(type="submit" value="Search").searchBtn
     if posts
         each post in posts 

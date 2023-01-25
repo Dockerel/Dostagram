@@ -5,9 +5,7 @@ import Chat from "../models/Chat.js";
 import Video from "../models/Video.js";
 
 export const home = async (req, res) => {
-  const posts = await Post.find({})
-    .sort({ createdAt: "desc" })
-    .populate("owner");
+  const posts = await Post.find({}).sort({ createdAt: -1 }).populate("owner");
   const chats = await Chat.find({}).populate("owner");
   const videos = await Video.find({}).populate("owner");
   res.render("home", { pageTitle: "Home", posts, chats, videos });
